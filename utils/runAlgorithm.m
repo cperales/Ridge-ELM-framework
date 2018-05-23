@@ -1,0 +1,106 @@
+function [ method, metric ] = runAlgorithm( config )
+%% READING DATA
+nameAlgorithm = config.Algorithm.name;
+
+dataset = config.Data.dataset;
+n_folds = length(dataset);
+metric = struct('accuracy', 0.0, 'rmse', 0.0,...
+                'cross_runtime', 0.0, 'diversity', 0.0,...
+                'kernel_diversity', 0.0);
+metric_acc = [];
+metric_div = [];
+metric_time = [];
+metric_rmse = [];
+metric_kdiv = [];
+
+for n_f=1:n_folds
+    train_name = fullfile(config.Data.folder, config.Data.dataset{n_f}{1});
+    train = load(train_name);
+    test_name = fullfile(config.Data.folder, config.Data.dataset{n_f}{2});
+    test = load(test_name);
+
+    methodConf = struct(config.Algorithm.hyperparameters);
+
+    %% PREPROCESSING
+    % Standarizing data
+    % Split input and targerts
+    trainData = train(:,1:end-1);
+    trainTarg = train(:,end);
+    testData = test(:,1:end-1);
+    testTarg = test(:,end);
+    if config.Data.standarized == false
+        z_train_data = zscore(trainData);
+        trainData = z_train_data;
+        z_test_data = zscore(testData);
+        testData = z_test_data;
+    end
+
+    % Encoding
+    trainTencod = targetEncoding(trainTarg, nameAlgorithm);
+    testTencod = targetEncoding(testTarg, nameAlgorithm, trainTencod);
+
+    % Average metric
+    nRun = 1;  % 5
+    acc = 0;
+    div = 0;
+    cross_runtime = 0;
+    r = 0;
+    kdiv = 0;
+    for n_r=1:nRun
+        %% ALGORITHM'S CONFIGURATION
+        eval(['method = ' nameAlgorithm ';']);
+        method.setConf(methodConf);
+        t = cputime;  % Runtime
+        method.config(trainData, trainTencod);
+        e = cputime - t;
+
+        %% METRICS
+        metrics = config.Report.metrics;
+        for i=1:length(metrics)
+            metric_function = metrics{i};
+            switch metric_function
+                case "accuracy"
+                    acc = acc + accuracy(method, testData, testTencod);
+                case "diversity"
+                    div = div + diversity(method);
+                case "cross_runtime"
+                    cross_runtime = cross_runtime + e;
+                case "rmse"
+                    r = r + rmse(method, testData, testTencod);
+                case "kernel_diversity"
+                    kdiv = kdiv + kernel_diversity(method);
+            end
+        end
+        
+
+    end
+    acc = acc / nRun;
+    div = div / nRun;
+    cross_runtime = cross_runtime / nRun;
+    kdiv = kdiv / nRun;
+    r = r / nRun;
+    fprintf('Accuracy with %i executions, in n_fold %i = %f\n', ...
+            nRun, n_f, acc);
+%     if div ~= 0
+%         fprintf('Diversity is %f\n', div);
+%     end
+    metric_acc = [metric_acc, acc];
+    metric_div = [metric_div, div];
+    metric_time = [metric_time, cross_runtime];
+    metric_rmse = [metric_rmse, r];
+    metric_kdiv = [metric_kdiv, kdiv];
+end
+metric_acc = mean(metric_acc);
+metric_div = mean(metric_div);
+metric_time = mean(metric_time);
+metric_kdiv = mean(metric_kdiv);
+metric_rmse = mean(metric_rmse);
+fprintf('Accuracy with %i folds, %i executions per fold, algoritm %s and dataset %s = %f\n', ...
+            n_folds, nRun, nameAlgorithm, config.Data.folder,  metric_acc);
+fprintf('Diversity is %f\n', metric_div);
+metric.accuracy = metric_acc;
+metric.diversity = metric_div;
+metric.kernel_diversity = metric_kdiv;
+metric.rmse = metric_rmse;
+metric.cross_runtime = metric_time;
+end
