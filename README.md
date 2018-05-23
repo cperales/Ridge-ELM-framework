@@ -1,6 +1,6 @@
 # MATLAB framework for ELM / Kernel Ridge research
 
-Main motivation of this repository is to create a whole framework (preprocessing functions, paralelizations) for running tests related with research done in [Universidad Loyola Andalucía] with Ridge Classification / ELM.
+Main motivation of this repository is to create a whole framework (preprocessing functions, parallelizations) for running tests related with research done in [Universidad Loyola Andalucía] with Ridge Classification / ELM.
 
 ## Data
 
@@ -19,6 +19,17 @@ These config files have
 - Running parameters (datasets, where to find them, ...)
 - Hyperparameters for cross validation.
 
-## Paralelization
+## Parallelization
 
-For paralelization, [PYLM](https://pypi.org/project/pylm/) library is used. Bash files from `pylm_scripts` folder are used.
+For parallelization, [PYLM](https://pypi.org/project/pylm/) library is used. Bash files from `pylm_scripts` folder are used.
+
+```bash
+bash pylm_scripts/set_up.sh
+bash pylm_scripts/run_all_config.sh
+```
+
+And, when finished,
+
+```bash
+bash pylm_scripts/kill_workers.sh
+```
