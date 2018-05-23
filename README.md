@@ -33,3 +33,9 @@ And, when finished,
 ```bash
 bash pylm_scripts/kill_workers.sh
 ```
+
+But first MATLAB engine for python must be installed, as described in MATLAB documentation [here](https://es.mathworks.com/help/matlab/matlab-engine-for-python.html) and [here](https://es.mathworks.com/help/matlab/matlab_external/install-matlab-engine-api-for-python-in-nondefault-locations.html).
+
+## Documentation
+
+Documentation of the code can be readed [here](https://cperales.github.io/Ridge-ELM-framework/)
