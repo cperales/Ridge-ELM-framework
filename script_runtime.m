@@ -10,11 +10,11 @@ profile off
 toc;
 profsave(profile('info'), 'profiling/NELM_prueba')
 clear;
-% DiverseNELM
+% KELM
 tic;
 profile on
 maxNumCompThreads(1);
-Experiment('DiverseNELM', 'prueba');
+Experiment('KELM', 'prueba');
 profile off
 toc;
 profsave(profile('info'), 'profiling/KELM_prueba')

@@ -7,6 +7,8 @@ from template import *
 data_folder = 'data'
 config_folder = 'config'
 
+if not os.path.isdir(config_folder):
+    os.mkdir(config_folder)
 
 # # Francisco's tests
 francisco_tests = os.listdir(data_folder)

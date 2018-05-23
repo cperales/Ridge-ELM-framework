@@ -53,8 +53,6 @@ if __name__ == '__main__':
                                        quotechar='|', quoting=csv.QUOTE_MINIMAL)
             metric_list = ['Accuracy',
                            'RSME',
-                           'Diversity',
-                           'Kernel_diversity',
                            'Cross_runtime']
             metric_writer.writerow(['Algorithm', 'Dataset'] +
                                    metric_list +
@@ -72,8 +70,6 @@ if __name__ == '__main__':
                                            quotechar='|', quoting=csv.QUOTE_MINIMAL)
                 metric_list = ['Accuracy',
                                'RSME',
-                               'Diversity',
-                               'Kernel_diversity',
                                'Cross_runtime']
                 try:
                     metric_dict = response_dict['Metrics']
@@ -84,8 +80,6 @@ if __name__ == '__main__':
                          response_dict['Dataset'],
                          str(metric_dict['accuracy']),
                          str(metric_dict['rsme']),
-                         str(metric_dict['diversity']),
-                         str(metric_dict['kernel_diversity']),
                          str(metric_dict['cross_runtime']),
                          str(response_dict['Runtime'])]
                     metric_writer.writerow(r)

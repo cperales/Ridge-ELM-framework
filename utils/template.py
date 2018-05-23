@@ -7,8 +7,6 @@ ensemble_size = 5
 lambda_grid = [0.25, 0.5, 1, 5, 10]
 r_grid = [0.1, 0.2, 0.3, 0.4, 0.5]
 ensemble_metrics = ["accuracy",
-                    "diversity",
-                    "kernel_diversity",
                     "rmse",
                     "cross_runtime"]
 simple_metrics = ["accuracy",

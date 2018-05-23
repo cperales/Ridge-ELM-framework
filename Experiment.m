@@ -1,8 +1,6 @@
 function [algorithm_cell] = Experiment(algorithm_name, json_file_name, output_file_name)
 % This function run the cross validation for
 % the algorithm name, searching the data specified in the JSON
-% Possible values of algorithm_name = NELM, KELM, 
-% AdaBoostNELM, AdaBoostNCNELM, DiverseNELM
 
 addpath('./algorithm')
 addpath('./ensemble')

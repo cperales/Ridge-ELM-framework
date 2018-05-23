@@ -1,0 +1,260 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Ensembles &#8212; framework-matlab-elm 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Metrics" href="metric.html" />
+    <link rel="prev" title="Algorithms" href="base.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="ensembles">
+<h1>Ensembles<a class="headerlink" href="#ensembles" title="Permalink to this headline">¶</a></h1>
+<p>This is the module for ensemble meta-algorithms which use ELM as base learners.</p>
+<span class="target" id="module-ensemble"></span><div class="section" id="nelm-as-base-learner">
+<h2>NELM as base learner<a class="headerlink" href="#nelm-as-base-learner" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="adaboost-elm">
+<h3>AdaBoost ELM<a class="headerlink" href="#adaboost-elm" title="Permalink to this headline">¶</a></h3>
+<p>AdaBoost implementation for Neural Extreme Learning Machine.</p>
+<dl class="class">
+<dt id="ensemble.AdaBoostNELM">
+<em class="property">class </em><code class="descclassname">ensemble.</code><code class="descname">AdaBoostNELM</code><a class="headerlink" href="#ensemble.AdaBoostNELM" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="base.html#algorithm.NELM" title="algorithm.NELM"><code class="xref mat mat-class docutils literal"><span class="pre">algorithm.NELM</span></code></a></p>
+<p>AdaBoost ensemble of Neural regularized Extreme Learning Machine</p>
+<dl class="attribute">
+<dt id="ensemble.AdaBoostNELM.D">
+<code class="descname">D</code><em class="property"> = None</em><a class="headerlink" href="#ensemble.AdaBoostNELM.D" title="Permalink to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ensemble.AdaBoostNELM.alpha">
+<code class="descname">alpha</code><em class="property"> = None</em><a class="headerlink" href="#ensemble.AdaBoostNELM.alpha" title="Permalink to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ensemble.AdaBoostNELM.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>trainData</em>, <em>trainTarg</em>, <em>parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#ensemble.AdaBoostNELM.fit" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">TrainData:</th><td class="field-body">Data matrix n x m, with n instances and m features.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">TrainTarg:</th><td class="field-body">Target J-encoded matrix n x j.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body">Structure with the cross validated hyperparameters.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ensemble.AdaBoostNELM.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><em>testPatterns</em><span class="sig-paren">)</span><a class="headerlink" href="#ensemble.AdaBoostNELM.predict" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">TestPattern:</th><td class="field-body">Data matrix n x m, with n instances to predict and m features.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ensemble.AdaBoostNELM.trainTargDecoded">
+<code class="descname">trainTargDecoded</code><em class="property"> = None</em><a class="headerlink" href="#ensemble.AdaBoostNELM.trainTargDecoded" title="Permalink to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="boosting-ridge-elm">
+<h3>Boosting Ridge ELM<a class="headerlink" href="#boosting-ridge-elm" title="Permalink to this headline">¶</a></h3>
+<p>Boosting Ridge AdaBoost implementation for Neural Extreme Learning Machine.</p>
+<dl class="class">
+<dt id="ensemble.BRNELM">
+<em class="property">class </em><code class="descclassname">ensemble.</code><code class="descname">BRNELM</code><a class="headerlink" href="#ensemble.BRNELM" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="base.html#algorithm.NELM" title="algorithm.NELM"><code class="xref mat mat-class docutils literal"><span class="pre">algorithm.NELM</span></code></a></p>
+<p>Boosting Ridge ensemble of Neural regularized Extreme Learning Machine</p>
+<dl class="attribute">
+<dt id="ensemble.BRNELM.alpha">
+<code class="descname">alpha</code><em class="property"> = None</em><a class="headerlink" href="#ensemble.BRNELM.alpha" title="Permalink to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ensemble.BRNELM.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>trainData</em>, <em>trainTarg</em>, <em>parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#ensemble.BRNELM.fit" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">TrainData:</th><td class="field-body">Data matrix n x m, with n instances and m features.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">TrainTarg:</th><td class="field-body">Target J-encoded matrix n x j.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body">Structure with the cross validated hyperparameters.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ensemble.BRNELM.fit_step">
+<code class="descname">fit_step</code><span class="sig-paren">(</span><em>y_mu</em>, <em>s</em><span class="sig-paren">)</span><a class="headerlink" href="#ensemble.BRNELM.fit_step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Same part</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ensemble.BRNELM.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><em>testPatterns</em><span class="sig-paren">)</span><a class="headerlink" href="#ensemble.BRNELM.predict" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">TestPattern:</th><td class="field-body">Data matrix n x m, with n instances to predict and m features.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ensemble.BRNELM.y_mu">
+<code class="descname">y_mu</code><em class="property"> = None</em><a class="headerlink" href="#ensemble.BRNELM.y_mu" title="Permalink to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="negative-correlation-elm">
+<h3>Negative Correlation ELM<a class="headerlink" href="#negative-correlation-elm" title="Permalink to this headline">¶</a></h3>
+<p>Negative Correlation AdaBoost implementation for Neural Extreme Learning Machine.</p>
+<dl class="class">
+<dt id="ensemble.AdaBoostNCNELM">
+<em class="property">class </em><code class="descclassname">ensemble.</code><code class="descname">AdaBoostNCNELM</code><a class="headerlink" href="#ensemble.AdaBoostNCNELM" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ensemble.AdaBoostNELM" title="ensemble.AdaBoostNELM"><code class="xref mat mat-class docutils literal"><span class="pre">ensemble.AdaBoostNELM</span></code></a></p>
+<p>AdaBoost Negative Correlation ensemble of Neural regularized Extreme Learning Machine</p>
+<dl class="method">
+<dt id="ensemble.AdaBoostNCNELM.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>trainData</em>, <em>trainTarg</em>, <em>parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#ensemble.AdaBoostNCNELM.fit" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">TrainData:</th><td class="field-body">Data matrix n x m, with n instances and m features.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">TrainTarg:</th><td class="field-body">Target J-encoded matrix n x j.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body">Structure with the cross validated hyperparameters.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ensemble.AdaBoostNCNELM.fit_step">
+<code class="descname">fit_step</code><span class="sig-paren">(</span><em>weight</em>, <em>pen</em>, <em>trainTarg</em>, <em>s</em><span class="sig-paren">)</span><a class="headerlink" href="#ensemble.AdaBoostNCNELM.fit_step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Beta</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ensemble.AdaBoostNCNELM.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><em>testPatterns</em><span class="sig-paren">)</span><a class="headerlink" href="#ensemble.AdaBoostNCNELM.predict" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">TestPattern:</th><td class="field-body">Data matrix n x m, with n instances to predict and m features.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="base.html" title="previous chapter">Algorithms</a></li>
+      <li>Next: <a href="metric.html" title="next chapter">Metrics</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Carlos Perales et al..
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/ensemble.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

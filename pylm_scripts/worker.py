@@ -8,7 +8,7 @@ import re
 
 class MyWorker(Worker):
     eng = matlab.engine.start_matlab()
-    eng.maxNumCompThreads(1)
+    eng.maxNumCompThreads(1)  # In order to paralelize
 
     def experiment(self, argument):
         # Expecting a string
