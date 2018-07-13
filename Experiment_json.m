@@ -21,6 +21,7 @@ end
 str = [config.Report.folder, config.Algorithm.name, '_', ...
     config.Report.report_name, '_', datestr(datetime('today')), '.csv'];
 fprintf('File to save: %s\n', str);
+fprintf('Dataset: %s', config.Report.report_name);
 fid = fopen(str, 'w');
 fprintf(fid, 'Dataset;');
 metric_fields = [];
@@ -31,7 +32,6 @@ for index_metric=1:length(config.Report.metrics)
 end
 fprintf(fid, 'runtime;');
 fprintf(fid, '\n');
-% try
 t = cputime;
 [algorithm, metric] = runAlgorithm(config);
 e = cputime - t;
@@ -44,13 +44,12 @@ metric_struct = struct();
 for j=1:length(metric_fields)
     metric_field = metric_fields{j};
     metric_value = getfield(metric, metric_field);
-    fprintf('Metric: %s, value = %f\n', metric_field, metric_value);
     metric_struct = setfield(metric_struct, metric_field, metric_value);
+    fprintf('Metric: %s, value = %f\n', metric_field, metric_value);
     fprintf(fid, '%f;', metric_value);
 end
-fprintf(fid, '%f;', e);
 algorithm_json.Metrics = metric_struct;
+fprintf(fid, '%f;', e);
 fprintf(fid, '\n');
 fclose(fid);
 result_json = jsonencode(algorithm_json);
-end

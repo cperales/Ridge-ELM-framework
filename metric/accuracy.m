@@ -1,5 +1,5 @@
 function [ acc ] = accuracy(clf, testData, testJTarg)
-% Percentage of the well-predicted data.
+% This function measures the percentage of the well-predicted test data.
 
 predTarg = clf.predict(testData);
 

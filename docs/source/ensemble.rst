@@ -7,6 +7,15 @@ This is the module for ensemble meta-algorithms which use ELM as base learners.
 NELM as base learner
 **********************
 
+Bagging ELM
+---------------------------------
+Bagging implementation for Neural Extreme Learning Machine.
+
+.. autoclass:: BaggingNELM
+    :show-inheritance:
+    :members:
+
+
 AdaBoost ELM
 ---------------------------------
 AdaBoost implementation for Neural Extreme Learning Machine.

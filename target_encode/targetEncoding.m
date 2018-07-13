@@ -13,5 +13,12 @@ else  % contains(nameAlgorithm, 'ELM')
             nLabels = size(trainJTarg, 2);
             finalTarg = Jencoding(Targ, nLabels);
         end
+    
+% else
+% 
+%     finalTarg = Targ;
+% 
+% end
 
 end
+

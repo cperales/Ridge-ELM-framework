@@ -18,9 +18,6 @@ classdef Classifier < handle
         %
         % Function: fit(Public)
         % Description: Estimate the parameters of the model.
-        % Type: Void
-        % Arguments:
-        %           No arguments
         %
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         
@@ -28,30 +25,42 @@ classdef Classifier < handle
         
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         %
-        % Function: predict(Public)
-        % Description: Predict the class label
-        % Type: Void
-        % Arguments:
-        %           No arguments
-        %
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        
-        predict(obj);
-        
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        %
         % Function: config(Public)
-        % Description: Conguire the classifier (and crossvalide)
-        % Type: Void
-        % Arguments:
-        %           No arguments
+        % Description: Configure the classifier (and crossvalide)
         %
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         
         config(obj);
+        
+        
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        %
+        % Function: indicator(Public)
+        % Description: Pure result of the classifier (without renorm)
+        %
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        
+        get_indicator(obj);
+        
+        
     end
     
+    methods
+    
+        function [probPatterns] = prob_predict(obj, testPatterns)
+            % :testPattern: Data matrix n x m, with n instances
+            % to predict and m features.
+            indicator = obj.get_indicator(testPatterns);
+            probPatterns = indicator ./ sum(indicator, 2);
+        end
+        
+        function [testTargets] = predict(obj, testPatterns)
+            % :testPattern: Data matrix n x m, with n instances
+            % to predict and m features.
+            indicator = obj.get_indicator(testPatterns);
+            testTargets = Jrenorm(indicator);
+        end
+        
+    end    
     
 end
-
-

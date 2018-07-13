@@ -7,20 +7,18 @@ import re
 
 
 class MyWorker(Worker):
-    eng = matlab.engine.start_matlab()
-    eng.maxNumCompThreads(1)  # In order to paralelize
-
     def experiment(self, argument):
+        # Start engine
+        eng = matlab.engine.start_matlab()
+        eng.maxNumCompThreads(1)
         # Expecting a string
         argument_str = argument.decode("utf-8")
-        result = self.eng.Experiment_json(argument_str)
+        result = eng.Experiment_json(argument_str)
+        # Stop engine
+        eng.quit()
+        eng = None
+        # Return result
         return result.encode('utf-8')
-
-    def foo(self, message):
-        json_file = json.loads(message.decode("utf-8"))
-        report_name = json_file['Report']['report_name']
-        print('This works!')
-        return report_name.encode('utf-8')
 
 
 worker = MyWorker('matlab_pylm',

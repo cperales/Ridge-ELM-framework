@@ -1,14 +1,15 @@
 function [ boolean ] = check_singular_matrix( matrix )
-% Function that check if matrix is singular
-% True if it is singular, False if not
+%CHECK_SINGULAR_MATRIX Summary of this function goes here
+%   Detailed explanation goes here
 
-% % Eigenvalues
+% OLD
 [L,U,P] = lu(matrix);
 % cond = abs(prod(diag(U)));
 cond_matrix = abs(prod(diag(U)));
 
-% % Cond number
+% % NEW
 % cond_matrix = cond(matrix);
+
 % isnan(rcond(rcond(matrix))) ||
 
 if cond_matrix < 1e-14

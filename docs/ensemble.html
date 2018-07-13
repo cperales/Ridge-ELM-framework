@@ -56,6 +56,71 @@
 <p>This is the module for ensemble meta-algorithms which use ELM as base learners.</p>
 <span class="target" id="module-ensemble"></span><div class="section" id="nelm-as-base-learner">
 <h2>NELM as base learner<a class="headerlink" href="#nelm-as-base-learner" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="bagging-elm">
+<h3>Bagging ELM<a class="headerlink" href="#bagging-elm" title="Permalink to this headline">¶</a></h3>
+<p>Bagging implementation for Neural Extreme Learning Machine.</p>
+<dl class="class">
+<dt id="ensemble.BaggingNELM">
+<em class="property">class </em><code class="descclassname">ensemble.</code><code class="descname">BaggingNELM</code><a class="headerlink" href="#ensemble.BaggingNELM" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="base.html#algorithm.NELM" title="algorithm.NELM"><code class="xref mat mat-class docutils literal"><span class="pre">algorithm.NELM</span></code></a></p>
+<p>Bagging ensemble of Neural regularized Extreme Learning Machine</p>
+<dl class="attribute">
+<dt id="ensemble.BaggingNELM.D">
+<code class="descname">D</code><em class="property"> = None</em><a class="headerlink" href="#ensemble.BaggingNELM.D" title="Permalink to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ensemble.BaggingNELM.alpha">
+<code class="descname">alpha</code><em class="property"> = None</em><a class="headerlink" href="#ensemble.BaggingNELM.alpha" title="Permalink to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ensemble.BaggingNELM.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>trainData</em>, <em>trainTarg</em>, <em>parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#ensemble.BaggingNELM.fit" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">TrainData:</th><td class="field-body">Data matrix n x m, with n instances and m features.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">TrainTarg:</th><td class="field-body">Target J-encoded matrix n x j.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body">Structure with the cross validated hyperparameters.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ensemble.BaggingNELM.get_indicator">
+<code class="descname">get_indicator</code><span class="sig-paren">(</span><em>testPatterns</em><span class="sig-paren">)</span><a class="headerlink" href="#ensemble.BaggingNELM.get_indicator" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">TestPattern:</th><td class="field-body">Data matrix n x m, with n instances to predict and m features.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ensemble.BaggingNELM.k">
+<code class="descname">k</code><em class="property"> = None</em><a class="headerlink" href="#ensemble.BaggingNELM.k" title="Permalink to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ensemble.BaggingNELM.trainTargDecoded">
+<code class="descname">trainTargDecoded</code><em class="property"> = None</em><a class="headerlink" href="#ensemble.BaggingNELM.trainTargDecoded" title="Permalink to this definition">¶</a></dt>
+<dd><p>None</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 <div class="section" id="adaboost-elm">
 <h3>AdaBoost ELM<a class="headerlink" href="#adaboost-elm" title="Permalink to this headline">¶</a></h3>
 <p>AdaBoost implementation for Neural Extreme Learning Machine.</p>
@@ -94,8 +159,8 @@
 </dd></dl>
 
 <dl class="method">
-<dt id="ensemble.AdaBoostNELM.predict">
-<code class="descname">predict</code><span class="sig-paren">(</span><em>testPatterns</em><span class="sig-paren">)</span><a class="headerlink" href="#ensemble.AdaBoostNELM.predict" title="Permalink to this definition">¶</a></dt>
+<dt id="ensemble.AdaBoostNELM.get_indicator">
+<code class="descname">get_indicator</code><span class="sig-paren">(</span><em>testPatterns</em><span class="sig-paren">)</span><a class="headerlink" href="#ensemble.AdaBoostNELM.get_indicator" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -201,13 +266,13 @@
 
 <dl class="method">
 <dt id="ensemble.AdaBoostNCNELM.fit_step">
-<code class="descname">fit_step</code><span class="sig-paren">(</span><em>weight</em>, <em>pen</em>, <em>trainTarg</em>, <em>s</em><span class="sig-paren">)</span><a class="headerlink" href="#ensemble.AdaBoostNCNELM.fit_step" title="Permalink to this definition">¶</a></dt>
-<dd><p>Beta</p>
+<code class="descname">fit_step</code><span class="sig-paren">(</span><em>weight</em>, <em>pen</em>, <em>trainTarg</em>, <em>eye_matrix</em>, <em>s</em><span class="sig-paren">)</span><a class="headerlink" href="#ensemble.AdaBoostNCNELM.fit_step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Weight matrix</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="ensemble.AdaBoostNCNELM.predict">
-<code class="descname">predict</code><span class="sig-paren">(</span><em>testPatterns</em><span class="sig-paren">)</span><a class="headerlink" href="#ensemble.AdaBoostNCNELM.predict" title="Permalink to this definition">¶</a></dt>
+<dt id="ensemble.AdaBoostNCNELM.get_indicator">
+<code class="descname">get_indicator</code><span class="sig-paren">(</span><em>testPatterns</em><span class="sig-paren">)</span><a class="headerlink" href="#ensemble.AdaBoostNCNELM.get_indicator" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />

@@ -42,20 +42,16 @@ classdef NELM < NMethod
                     obj.trainPatterns = trainData;
 
         end
-    
-        function [testTargets] = predict(obj, testPatterns)
-            % :testPattern: Data matrix n x m, with n instances to predict and m features.
 
+        function [indicator] = get_indicator(obj, testPatterns)
             % Get matrixes
             n = size(testPatterns, 1);
             ind = ones(n, 1);
             BiasMatrix = obj.BiasVector(:, ind);
             tempH = obj.InputWeight * testPatterns' + BiasMatrix;
             H = obj.neuronFun(tempH');
-            
             % Obtain target
             indicator = H * obj.OutputWeight;
-            testTargets = Jrenorm(indicator);
         end
          
         function [parameters] = save_param(obj)

@@ -19,3 +19,8 @@ Root Mean Square Error
 
 .. autofunction:: rmse()
 
+Diversity
+---------------------------------
+
+.. autofunction:: diversity()
+

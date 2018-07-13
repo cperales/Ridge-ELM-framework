@@ -1,5 +1,5 @@
 function [T] = Yencoding(Targ)
-% This function enconde as SVM.
+% (TESTING) This function enconde as SVM.
 
     avaTarg = unique(Targ);
     if all(avaTarg == [-1, 1])  % It is already encoding

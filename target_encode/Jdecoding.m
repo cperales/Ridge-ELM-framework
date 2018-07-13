@@ -3,7 +3,6 @@ function [ Targ ] = Jdecoding( T )
 %
 % This function takes a target from J encoding to Y encoding.
 
-[maxValue, TargRow] = max(T');
-Targ = TargRow';
+[~, Targ] = max(T,[],2);
 
 end

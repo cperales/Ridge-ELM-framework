@@ -62,7 +62,21 @@ classdef NMethod < CVMethod
 %             else
 %                 obj.gridParam.lambda = 0;
             end
-                        
+            
+            % Diversity
+            if isfield(methodConf, 'D')
+                obj.gridParam.D = methodConf.D;
+%             else
+%                 obj.gridParam.D = 0;
+            end
+            
+            % SM Diversity
+            if isfield(methodConf, 'r')
+                obj.gridParam.r = methodConf.r;
+%             else
+%                 obj.gridParam.D = 0;
+            end
+            
         end
         
    end

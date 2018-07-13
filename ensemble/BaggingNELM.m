@@ -94,7 +94,7 @@ classdef BaggingNELM < NELM
 
         end
     
-        function [testTargets] = predict(obj, testPatterns)
+        function [indicator] = get_indicator(obj, testPatterns)
             % :testPattern: Data matrix n x m, with n instances to predict and m features.
             
             % Get indicators
@@ -113,7 +113,7 @@ classdef BaggingNELM < NELM
                 testTargets = testTargets + Y_hat .* obj.alpha{s};
             end
             
-            testTargets = Jrenorm(testTargets);    
+            indicator = testTargets;    
             
         end
          

@@ -17,7 +17,7 @@ python utils/writing_json.py
 These config files have
 
 - Running parameters (datasets, where to find them, ...)
-- Hyperparameters for cross validation.
+- Hyperparameters for cross validation, which are selected from `utils/template.py`.
 
 ## Parallelization
 

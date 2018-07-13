@@ -2,13 +2,11 @@ import os
 import json
 import copy
 from template import *
+from selected_datasets import datasets
 
-# Folder to search the data
+# # Folder to search the data
 data_folder = 'data'
 config_folder = 'config'
-
-if not os.path.isdir(config_folder):
-    os.mkdir(config_folder)
 
 # # Francisco's tests
 francisco_tests = os.listdir(data_folder)
@@ -18,27 +16,53 @@ pair_dir_files = []
 
 values = [str(i) for i in range(10)]
 
-for dirname, subdirname, file_names in os.walk(data_folder):
-    valid_file_names = []
-    for filename in file_names:
-        if filename[-1:] in values:
-                valid_file_names.append(filename)
-    if len(valid_file_names) > 0:
-        pair_dir_files.append((dirname, valid_file_names))
+copy_data_folder = os.listdir(data_folder)
+
+rejected = []
+for dirname in os.listdir(data_folder):
+    name = dirname
+    dirname = os.path.join(data_folder, dirname)
+    possible_file = os.path.join(dirname, name)
+    if name in datasets or len(datasets) == 0:
+        valid_filenames = []
+        copy_data_folder.remove(name)
+        for filename in os.listdir(dirname):
+            if filename[-1] in values:
+                valid_filenames.append(filename)
+        if len(valid_filenames) > 0:
+            pair_dir_files.append((dirname, valid_filenames))
+    else:
+        rejected.append(name)
+
+for dirname, filenames in pair_dir_files:
+    print('{} is valid'.format(dirname))
+
+for name in rejected:
+    print('{} not in selected datasets'.format(name))
 
 print('There are {} datasets'.format(len(pair_dir_files)))
+if len(pair_dir_files) == 1:
+    dataset_name = pair_dir_files[0][0].split('/')[1]
+else:
+    dataset_name = 'multiprueba'
+
+if len(copy_data_folder) > 0:
+    print('These folders have not been analyzed')
+    print(copy_data_folder)
+    print()
 
 algorithms = ['AdaBoostNCNELM',
               'AdaBoostBRNELM',
               'AdaBoostNELM',
               'NELM',
-              'BaggingNELM',
-              'KELM']
+              'KELM',
+              'BaggingNELM']
 
 # All the train-test file names are stored, along their directory name.
 for algorithm in algorithms:
     algorithm_tuple = algorithms_dict[algorithm]
     config_name, dict_template = algorithm_tuple
+    config_name = '.'.join(['_'.join([config_name, dataset_name]), 'json'])
 
     # A list of tests in a JSON
     list_of_experiments = []

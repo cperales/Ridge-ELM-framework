@@ -60,7 +60,7 @@
 <dl class="class">
 <dt id="algorithm.NELM">
 <em class="property">class </em><code class="descclassname">algorithm.</code><code class="descname">NELM</code><a class="headerlink" href="#algorithm.NELM" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref mat mat-class docutils literal"><span class="pre">home.cperales.pruebas.ELM-matlab-publicar.generic.NMethod</span></code></p>
+<dd><p>Bases: <code class="xref mat mat-class docutils literal"><span class="pre">home.cperales.pruebas.Ridge-ELM-framework.generic.NMethod</span></code></p>
 <p>Neural Extreme Learning Machine with a hidden layer</p>
 <dl class="attribute">
 <dt id="algorithm.NELM.H">
@@ -86,16 +86,9 @@
 </dd></dl>
 
 <dl class="method">
-<dt id="algorithm.NELM.predict">
-<code class="descname">predict</code><span class="sig-paren">(</span><em>testPatterns</em><span class="sig-paren">)</span><a class="headerlink" href="#algorithm.NELM.predict" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">TestPattern:</th><td class="field-body">Data matrix n x m, with n instances to predict and m features.</td>
-</tr>
-</tbody>
-</table>
+<dt id="algorithm.NELM.get_indicator">
+<code class="descname">get_indicator</code><span class="sig-paren">(</span><em>testPatterns</em><span class="sig-paren">)</span><a class="headerlink" href="#algorithm.NELM.get_indicator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get matrixes</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -114,7 +107,7 @@ Kernel Ridge Classification.</p>
 <dl class="class">
 <dt id="algorithm.KELM">
 <em class="property">class </em><code class="descclassname">algorithm.</code><code class="descname">KELM</code><a class="headerlink" href="#algorithm.KELM" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref mat mat-class docutils literal"><span class="pre">home.cperales.pruebas.ELM-matlab-publicar.generic.KMethod</span></code></p>
+<dd><p>Bases: <code class="xref mat mat-class docutils literal"><span class="pre">home.cperales.pruebas.Ridge-ELM-framework.generic.KMethod</span></code></p>
 <p>Kernel Extreme Learning Machine</p>
 <dl class="method">
 <dt id="algorithm.KELM.fit">
@@ -134,8 +127,8 @@ Kernel Ridge Classification.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="algorithm.KELM.predict">
-<code class="descname">predict</code><span class="sig-paren">(</span><em>testPatterns</em><span class="sig-paren">)</span><a class="headerlink" href="#algorithm.KELM.predict" title="Permalink to this definition">¶</a></dt>
+<dt id="algorithm.KELM.get_indicator">
+<code class="descname">get_indicator</code><span class="sig-paren">(</span><em>testPatterns</em><span class="sig-paren">)</span><a class="headerlink" href="#algorithm.KELM.get_indicator" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />

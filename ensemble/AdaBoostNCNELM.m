@@ -7,14 +7,12 @@ classdef AdaBoostNCNELM < AdaBoostNELM
     
     methods
         
-        function [weight, pen] = fit_step(obj, weight, pen, trainTarg, s)
-            %% Beta
+        function [weight, pen] = fit_step(obj, weight, pen, trainTarg, eye_matrix, s)
+            %% Weight matrix
             weight_matrix = diag(weight);
-            H_reg = (eye(size(obj.H, 1)) ./ obj.C + weight_matrix * obj.H * obj.H');
             
-            %% Calculate beta
-            B = H_reg \ (weight_matrix * trainTarg);
-            Beta_s = obj.H' * B;
+            %% Beta
+            Beta_s = obj.H' * ((eye_matrix ./ obj.C + weight_matrix * obj.H * obj.H') \ (weight_matrix * trainTarg));
 
             %% Calculate errors, alpha and weight
             Y_hat = obj.H * Beta_s;
@@ -26,9 +24,8 @@ classdef AdaBoostNCNELM < AdaBoostNELM
                 % predict with the ensemble
                 H_T = zeros(size(Y_hat));
                 for k=1:s-1
-                    indicator = obj.H * obj.OutputWeight{k};
                     % Obtain target
-                    H_T_hat = Jrenorm(indicator);
+                    H_T_hat = obj.H * obj.OutputWeight{k};
                     % Ponderate
                     H_T = H_T + H_T_hat .* obj.alpha{k};
                 end                    
@@ -72,6 +69,7 @@ classdef AdaBoostNCNELM < AdaBoostNELM
                     obj.t = size(trainTarg, 2);
                     
                     % Matrix
+                    eye_matrix = eye(n);
                     obj.InputWeight = rand(h, m);
                     obj.BiasVector = rand(h, 1);
                     ind = ones(n, 1);
@@ -87,12 +85,12 @@ classdef AdaBoostNCNELM < AdaBoostNELM
                     obj.alpha = ensemble;
                     
                     for s=1:obj.ensembleSize
-                        [weight, pen] = obj.fit_step(weight, pen, trainTarg, s);
+                        [weight, pen] = obj.fit_step(weight, pen, trainTarg, eye_matrix, s);
                     end
                     
         end
     
-        function [testTargets] = predict(obj, testPatterns)
+        function [indicator] = get_indicator(obj, testPatterns)
             % :testPattern: Data matrix n x m, with n instances to predict and m features.
             
             % Get indicators
@@ -102,16 +100,13 @@ classdef AdaBoostNCNELM < AdaBoostNELM
             tempH = obj.InputWeight * testPatterns' + BiasMatrix;
             H = obj.neuronFun(tempH');
             
-            testTargets = zeros(n, obj.t);
+            indicator = zeros(n, obj.t);
             for s=1:obj.ensembleSize
-                indicator = H * obj.OutputWeight{s};
-                % Obtain target
-                Y_hat = Jrenorm(indicator);
+                Y_hat = H * obj.OutputWeight{s};
                 % Ponderate
-                testTargets = testTargets + Y_hat .* obj.alpha{s};
+                indicator = indicator + Y_hat .* obj.alpha{s};
             end
-            
-            testTargets = Jrenorm(testTargets);
+
         end
          
         function [parameters] = save_param(obj)

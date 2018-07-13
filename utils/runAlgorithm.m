@@ -5,8 +5,9 @@ nameAlgorithm = config.Algorithm.name;
 dataset = config.Data.dataset;
 n_folds = length(dataset);
 metric = struct('accuracy', 0.0, 'rmse', 0.0,...
-                'cross_runtime', 0.0);
+                'cross_runtime', 0.0, 'diversity', 0.0);
 metric_acc = [];
+metric_div = [];
 metric_time = [];
 metric_rmse = [];
 
@@ -37,8 +38,9 @@ for n_f=1:n_folds
     testTencod = targetEncoding(testTarg, nameAlgorithm, trainTencod);
 
     % Average metric
-    nRun = 1;  % 5
+    nRun = 10;  % 5
     acc = 0;
+    div = 0;
     cross_runtime = 0;
     r = 0;
     for n_r=1:nRun
@@ -56,6 +58,8 @@ for n_f=1:n_folds
             switch metric_function
                 case "accuracy"
                     acc = acc + accuracy(method, testData, testTencod);
+                case "diversity"
+                    div = div + diversity(method);
                 case "cross_runtime"
                     cross_runtime = cross_runtime + e;
                 case "rmse"
@@ -66,20 +70,28 @@ for n_f=1:n_folds
 
     end
     acc = acc / nRun;
+    div = div / nRun;
     cross_runtime = cross_runtime / nRun;
     r = r / nRun;
     fprintf('Accuracy with %i executions, in n_fold %i = %f\n', ...
             nRun, n_f, acc);
+%     if div ~= 0
+%         fprintf('Diversity is %f\n', div);
+%     end
     metric_acc = [metric_acc, acc];
+    metric_div = [metric_div, div];
     metric_time = [metric_time, cross_runtime];
     metric_rmse = [metric_rmse, r];
 end
 metric_acc = mean(metric_acc);
+metric_div = mean(metric_div);
 metric_time = mean(metric_time);
 metric_rmse = mean(metric_rmse);
 fprintf('Accuracy with %i folds, %i executions per fold, algoritm %s and dataset %s = %f\n', ...
             n_folds, nRun, nameAlgorithm, config.Data.folder,  metric_acc);
+fprintf('Diversity is %f\n', metric_div);
 metric.accuracy = metric_acc;
+metric.diversity = metric_div;
 metric.rmse = metric_rmse;
 metric.cross_runtime = metric_time;
 end

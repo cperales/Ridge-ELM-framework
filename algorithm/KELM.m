@@ -35,8 +35,8 @@ classdef KELM < KMethod
                     obj.trainPatterns = trainData;
 
         end
-    
-        function [testTargets ]= predict(obj, testPatterns)
+
+        function [indicator] = get_indicator(obj, testPatterns)
             % :testPattern: Data matrix n x m, with n instances to predict and m features.
             
                     switch obj.kernelFun
@@ -53,12 +53,8 @@ classdef KELM < KMethod
                     rethrow(ME);
                 end
                 
-                [maxVal, finalOutput] = max(indicator');
-                
-                output_size = size(obj.OutputWeight);
-                n_targets = output_size(2);                
-                testTargets = Jencoding(finalOutput', n_targets);
-
+                % Extreme values of kernel give NaN
+                indicator(isnan(indicator)) = 0;
         end
     
         function [parameters] = save_param(obj)

@@ -11,18 +11,16 @@ classdef CVMethod < Classifier
         
         fit(obj);
         
-        predict(obj);
-        
        end
     
           methods
               
               function obj = config(obj, trainData, trainTarg)
                   CVparamNames = fieldnames(obj.gridParam);
-                  combinations = combvec(getfield(obj.gridParam, CVparamNames{1}));
+                  combinations = combvec(obj.gridParam.(CVparamNames{1}));
                   
                   for i=2:length(CVparamNames)
-                      combinations = combvec(combinations, getfield(obj.gridParam, CVparamNames{i}));
+                      combinations = combvec(combinations, obj.gridParam.(CVparamNames{i}));
                   end                  
                   
                   % Init the CV criteria
@@ -46,8 +44,7 @@ classdef CVMethod < Classifier
 
                           param = struct();
                           for j=1:length(CVparamNames)
-                              param = setfield(param, CVparamNames{j},...
-                                  currentCombination(j));
+                              param.(CVparamNames{j}) = currentCombination(j);
                           end
                                
                           try
@@ -72,7 +69,7 @@ classdef CVMethod < Classifier
                 
                       if currentCvCriteria < bestCvCriteria
                           % Save the index for accesing the fold results
-                          [someValue, position] = min(L);
+                          [~, position] = min(L);
                           currentCvCriteria = mean(L);
                           bestIdx = [i, position];
                           % Copy all the settings

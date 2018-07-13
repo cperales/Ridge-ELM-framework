@@ -3,7 +3,7 @@ function [ T ] = Jrenorm( T )
 %
 % Renormalization of a J encoded target.
 
-[max_value, max_idx] = max(T');
+[~, max_idx] = max(T,[],2);
 T = zeros(size(T));
 for r=1:size(T,1)
     T(r, max_idx(r)) = 1;
