@@ -1,10 +1,12 @@
 # MATLAB framework for ELM / Kernel Ridge research
 
-Main motivation of this repository is to create a whole framework (preprocessing functions, parallelizations) for running tests related with research done in [Universidad Loyola Andalucía] with Ridge Classification / ELM.
+Main motivation of this repository is to create a whole framework with preprocessing functionsa and parallelizations for running tests related with my thesis research done in [Universidad Loyola Andalucía](https://www.uloyola.es/investigacion/departamentos/metodos-cuantitativos) with Extreme Learning Machine, a.k.a. Kernel Ridge Classification.
+
+A preliminary study about diversity in ensembles where sended to HAIS 2018. Paper can be read [here](https://link.springer.com/chapter/10.1007/978-3-319-92639-1_25) and presentation is online available [here](https://www.slideshare.net/CarlosPerales/a-preliminary-study-of-diversity-in-elm-ensembles-hais-2018).
 
 ## Data
 
-A folder with `data` is mandatory. It can be created with [uci-download-process repository](https://github.com/cperales/uci-download-process), as it is pointed at its [README](https://github.com/cperales/uci-download-process/blob/master/README.md)
+A folder with `data` is mandatory. This folder contains subfolders, each one with k-folds for cross validation. All this structure can be created with [uci-download-process repository](https://github.com/cperales/uci-download-process) just running the script in the repository, as it is pointed at its [README](https://github.com/cperales/uci-download-process/blob/master/README.md).
 
 ## JSON configuration files
 
@@ -14,9 +16,11 @@ The config files can be created by running
 python utils/writing_json.py
 ```
 
+The python script read the templates from `utils/template.py`, the selected datasets from `utils/selected_datasets` and data available in the `data/` folder. If no dataset is specified, then the config files will cointain all the datasets.
+
 These config files have
 
-- Running parameters (datasets, where to find them, ...)
+- Running parameters (datasets, where to find them, where report the CSV with the metrics...)
 - Hyperparameters for cross validation, which are selected from `utils/template.py`.
 
 ## Parallelization
