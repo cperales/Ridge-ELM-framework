@@ -23,6 +23,10 @@ These config files have
 - Running parameters (datasets, where to find them, where report the CSV with the metrics...)
 - Hyperparameters for cross validation, which are selected from `utils/template.py`.
 
+## Example
+
+To run an example, just open MATLAB and run `script_experiment.m`. It will read config files from `config/`, calculate some metrics in a 10 stratified fold cross validation with 5 nested fold cross validation for hyperparameters, and store the metric results in CSV format in `experiment/`.
+
 ## Parallelization
 
 For parallelization, [PYLM](https://pypi.org/project/pylm/) library is used. Bash files from `pylm_scripts` folder are used.
