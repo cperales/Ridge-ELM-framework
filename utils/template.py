@@ -214,6 +214,5 @@ algorithms_dict = {'DiverseNELM': diverse_tuple,
                    'AdaBoostBRNELM': adaboost_br_tuple,
                    'AdaBoostNELM': adaboost_tuple,
                    'NELM': neural_tuple,
-                   'Miller_NELM': miller_neural_tuple,
                    'KELM': kernel_tuple,
                    'BaggingNELM': bagging_tuple}

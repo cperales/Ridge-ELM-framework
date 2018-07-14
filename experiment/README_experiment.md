@@ -1,3 +1,3 @@
 # EXPERIMENT
 
-CSV results from experiments are saved in this folder
+CSV results from experiments are saved in this folder.
