@@ -47,3 +47,22 @@ But first MATLAB engine for python must be installed, as described in MATLAB doc
 ## Documentation
 
 Documentation of the code can be readed [here](https://cperales.github.io/Ridge-ELM-framework/)
+
+## Bibliography
+
+Algorithms have been implemented from different papers:
+
+* ELM (neuronal and kernel versions) [1]
+* Diverse ELM [2]
+* AdaBoost ELM [3]
+* Bagging ELM [4]
+* Adaboost Negative Correlation ELM [5]
+* Adaboost Boosting Ridge [6]
+
+
+[1] G.-B. Huang, H. Zhou, X. Ding, and R. Zhang, “Extreme learning machine for regression and multiclass classification,” IEEE Transactions on Systems, Man, and Cybernetics. Part B, Cybernetics, vol. 42, no. 2, pp. 513–29, 2012.
+[2] C. Perales-Gonz´alez, M. Carbonero-Ruz, D. Becerra-Alonso, and F. Fern´andez-Navarro, “A preliminary study of diversity in extreme learning machines ensembles,” in Lecture Notes in Computer Science, pp. 302–314, Springer International Publishing, 2018
+[3] A. Riccardi, F. Fern´andez-Navarro, and S. Carloni, “Cost-sensitive AdaBoost algorithm for ordinal regression based on extreme learning machine,” IEEE Transactions on Cybernetics, vol. 44, no. 10, pp. 1898–1909, 2014.
+[4] H. Tian and B. Meng, “A new modeling method based on bagging elm for day-ahead electricity price prediction,” in Bio-Inspired Computing: Theories and Applications (BIC-TA), 2010 IEEE Fifth International Conference on, pp. 1076–1079, IEEE, 2010.
+[5] S. Wang, H. Chen, and X. Yao, “Negative correlation learning for classification ensembles,” Proceedings of the International Joint Conference on Neural Networks, 2010.
+[6] Y. Ran, X. Sun, H. Sun, L. Sun, X. Wang, and W. X. Ran Y, Sun X, Sun H, Sun L, “Boosting Ridge Extreme Learning Machine,” Proceedings - 2012 IEEE Symposium on Robotics and Applications, ISRA 2012, pp. 881–884, 2012.
