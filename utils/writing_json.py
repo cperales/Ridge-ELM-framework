@@ -51,7 +51,9 @@ if len(copy_data_folder) > 0:
     print(copy_data_folder)
     print()
 
-algorithms = ['AdaBoostNCNELM',
+algorithms = [
+              'DiverseNELM',
+              'AdaBoostNCNELM',
               'AdaBoostBRNELM',
               'AdaBoostNELM',
               'NELM',
